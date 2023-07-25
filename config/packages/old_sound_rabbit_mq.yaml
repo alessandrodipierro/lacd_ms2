@@ -1,0 +1,11 @@
+old_sound_rabbit_mq:
+  connections:
+    default:
+      url: '%env(RABBITMQ_URL)%'
+  consumers:
+    task:
+      connection: default
+      exchange_options: { name: 'messages', type: topic }
+      queue_options: { name: 'messages' }
+      callback: App\Consumer\MessageConsumer
+      enable_logger: true
